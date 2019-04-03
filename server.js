@@ -6,14 +6,24 @@ const todos = [
 ];
 
 const typeDefs = gql`
-  type Query {
+  type Todo {
     task: String
     completed: Boolean
   }
+
+  type Query {
+    getTodos: [Todo]
+  }
 `;
 
+const resolvers = {
+  Query: {
+    getTodos: () => todos
+  }
+};
+
 const server = new ApolloServer({
-  typeDefs
+  typeDefs, resolvers
 });
 
 server.listen().then(({ url }) => {
