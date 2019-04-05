@@ -1,9 +1,15 @@
 const { ApolloServer, gql } = require('apollo-server');
 const mongoose = require('mongoose');
+
 require('dotenv').config();
+const User = require('./models/User');
+const Post = require('./models/Post');
 
 mongoose
-  .connect(process.env.MONGO_URI, { useNewUrlParser: true })
+  .connect(process.env.MONGO_URI, { 
+    useCreateIndex:true,
+    useNewUrlParser: true
+  })
   .then(() => console.log('DB connected'))
   .catch(err => console.error(err));
 
@@ -19,7 +25,11 @@ const typeDefs = gql`
 `;
 
 const server = new ApolloServer({
-  typeDefs
+  typeDefs,
+  context: {
+    User,
+    Post
+  }
 });
 
 server.listen().then(({ url }) => {
