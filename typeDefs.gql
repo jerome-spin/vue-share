@@ -27,5 +27,9 @@ type Message {
 }
 
 type Query {
-  user(_id: ID!): User
+  getUser: User
+}
+
+type Mutation {
+  signupUser(username: String!, email: String!, password: String!): User!
 }
