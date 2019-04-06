@@ -25,6 +25,8 @@ const PostScema = new mongoose.Schema({
     type: Number,
     default: 0
   },
+  // propery ('createdBy') === path
+  // ref ('User') === model
   createdBy: {
     type: mongoose.Schema.Types.ObjectId,
     required: true,
