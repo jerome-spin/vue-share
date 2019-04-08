@@ -1,13 +1,11 @@
 <template>
-  <div>
+  <v-container>
     <h1>Home</h1>
-    <v-btn color='error'>Button</v-btn>
-  </div>
+  </v-container>
 </template>
 
 <script>
 // @ is an alias to /src
-
 export default {
   name: 'home'
 }
