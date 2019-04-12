@@ -1,36 +1,30 @@
 <template>
-  <v-container text-xs-center v-if='getPosts'>
-    <v-flex xs12>
+  <v-container text-xs-center>
+    <!-- <v-flex xs12>
       <v-carousel v-bind="{ 'cycle': true }" interval='3000'>
         <v-carousel-item v-for='post in getPosts' :key='post._id' :src='post.imageUrl'>
           <h1 id='carousel__title'>{{ post.title }}</h1>
         </v-carousel-item>
       </v-carousel>
-    </v-flex>
+    </v-flex> -->
   </v-container>
 </template>
 
 <script>
-import { gql } from 'apollo-boost'
+import { gql } from "apollo-boost";
 // @ is an alias to /src
 export default {
-  name: 'home',
-  apollo: {
-    getPosts: {
-      query: gql`
-        query {
-          getPosts {
-            _id
-            title
-            imageUrl
-            description
-            likes
-          }
-        }
-      `
+  name: "home",
+  created() {
+    this.handleGetCarouselPosts();
+  },
+  methods: {
+    handleGetCarouselPosts() {
+      // Reach out to Vuex store, fire action that gets posts for carousel
+      this.$store.dispatch("getPosts");
     }
   }
-}
+};
 </script>
 
 <style>
