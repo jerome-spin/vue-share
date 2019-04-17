@@ -36,7 +36,7 @@ export default new Vuex.Store({
         })
         .catch(err => {
           commit('setLoading', false);
-          console.err(err);
+          console.error(err);
         });
     },
     signinUser: ({ commit }, payload) => {
