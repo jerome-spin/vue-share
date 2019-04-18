@@ -29,13 +29,13 @@ export const defaultClient = new ApolloClient({
       }
     });
   },
-  onError: ({ graphQlErrors, networkError }) => {
+  onError: ({ graphQLErrors, networkError }) => {
     if (networkError) {
       console.log('TCL: networkError', networkError);
     }
 
-    if (graphQlErrors) {
-      for (let err of graphQlErrors) {
+    if (graphQLErrors) {
+      for (let err of graphQLErrors) {
         console.dir(err);
       }
     }
@@ -50,5 +50,9 @@ new Vue({
   apolloProvider,
   router,
   store,
-  render: h => h(App)
+  render: h => h(App),
+  created() {
+    // Execute getCurrentUser query
+    this.$store.dispatch('getCurrentUser');
+  }
 }).$mount('#app');
