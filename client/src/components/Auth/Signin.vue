@@ -35,7 +35,6 @@
         >
           <v-container>
             <v-form @submit.prevent='handleSigninUser'>
-
               <v-layout row>
                 <v-flex xs12>
                   <v-text-field
@@ -79,6 +78,8 @@
 </template>
 
 <script>
+import { mapGetters } from "vuex";
+
 export default {
   name: "Signin",
   data() {
@@ -86,6 +87,17 @@ export default {
       username: "",
       password: ""
     };
+  },
+  computed: {
+    ...mapGetters(["user"])
+  },
+  watch: {
+    user(value) {
+      // If user value changes, redirect to home page
+      if (value) {
+        this.$router.push("/");
+      }
+    }
   },
   methods: {
     handleSigninUser() {
