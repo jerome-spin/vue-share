@@ -1,74 +1,51 @@
 <template>
-  <v-container
-    text-xs-center
-    mt-5
-    pt-5
-  >
-
+  <v-container text-xs-center mt-5 pt-5>
     <!-- Signin Title -->
-    <v-layout
-      row
-      wrap
-    >
-      <v-flex
-        xs12
-        sm6
-        offset-sm3
-      >
+    <v-layout row wrap>
+      <v-flex xs12 sm6 offset-sm3>
         <h1>Welcome Back!</h1>
       </v-flex>
     </v-layout>
 
+    <!-- Error Alert -->
+    <v-layout v-if="error" row wrap>
+      <v-flex xs12 sm6 offset-sm3>
+        <form-alert :message="error.message"></form-alert>
+      </v-flex>
+    </v-layout>
+
     <!-- Signin Form -->
-    <v-layout
-      row
-      wrap
-    >
-      <v-flex
-        xs12
-        sm6
-        offset-sm3
-      >
-        <v-card
-          color='secondary'
-          dark
-        >
+    <v-layout row wrap>
+      <v-flex xs12 sm6 offset-sm3>
+        <v-card color="secondary" dark>
           <v-container>
-            <v-form @submit.prevent='handleSigninUser'>
+            <v-form @submit.prevent="handleSigninUser">
               <v-layout row>
                 <v-flex xs12>
-                  <v-text-field
-                    v-model='username'
-                    prepend-icon='face'
-                    label='Username'
-                    type='text'
-                  ></v-text-field>
+                  <v-text-field v-model="username" prepend-icon="face" label="Username" type="text"></v-text-field>
                 </v-flex>
               </v-layout>
 
               <v-layout row>
                 <v-flex xs12>
                   <v-text-field
-                    v-model='password'
-                    prepend-icon='extension'
-                    label='Password'
-                    type='password'
+                    v-model="password"
+                    prepend-icon="extension"
+                    label="Password"
+                    type="password"
                   ></v-text-field>
                 </v-flex>
               </v-layout>
 
               <v-layout row>
                 <v-flex xs12>
-                  <v-btn
-                    color='accent'
-                    type='submit'
-                  >Signin</v-btn>
-                  <h3>Don't have an account?
-                    <router-link to='/signup'>Signup</router-link>
+                  <v-btn color="accent" type="submit">Signin</v-btn>
+                  <h3>
+                    Don't have an account?
+                    <router-link to="/signup">Signup</router-link>
                   </h3>
                 </v-flex>
               </v-layout>
-
             </v-form>
           </v-container>
         </v-card>
@@ -89,7 +66,7 @@ export default {
     };
   },
   computed: {
-    ...mapGetters(["user"])
+    ...mapGetters(["error", "user"])
   },
   watch: {
     user(value) {
