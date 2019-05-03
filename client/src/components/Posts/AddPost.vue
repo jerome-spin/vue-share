@@ -38,7 +38,7 @@
               <v-select
                 v-model="categories"
                 :rules="categoriesRules"
-                :items="['Art', 'Education', 'Travel', 'Photography', 'Technology']"
+                :items="['Art', 'Education', 'Food', 'Furniture', 'Travel', 'Photography', 'Technology']"
                 multiple
                 label="Categories"
               ></v-select>
