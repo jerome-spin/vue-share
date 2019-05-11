@@ -55,6 +55,31 @@ export const ADD_POST = gql`
   }
 `;
 
+export const INFINITE_SCROLL_POSTS = gql`
+  query($pageNum: Int!, $pageSize: Int!) {
+    infiniteScrollPosts(pageNum: $pageNum, pageSize: $PageSize) {
+      hasMore
+      posts {
+        _id
+        title
+        imageUrl
+        categories
+        description
+        likes
+        createdDate
+        messages {
+          _id
+        }
+        createdBy {
+          _id
+          username
+          avatar
+        }
+      }
+    }
+  }
+`;
+
 /* User Mutations */
 export const SIGNIN_USER = gql`
   mutation($username: String!, $password: String!) {
