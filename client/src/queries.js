@@ -57,7 +57,7 @@ export const ADD_POST = gql`
 
 export const INFINITE_SCROLL_POSTS = gql`
   query($pageNum: Int!, $pageSize: Int!) {
-    infiniteScrollPosts(pageNum: $pageNum, pageSize: $PageSize) {
+    infiniteScrollPosts(pageNum: $pageNum, pageSize: $pageSize) {
       hasMore
       posts {
         _id
